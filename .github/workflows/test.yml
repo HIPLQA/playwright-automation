@@ -1,14 +1,44 @@
-name: Run Tests
+name: Playwright Test Execution
 
 on:
-  push:
-    branches: [ main ]
+push:
+branches: [ main ]
+pull_request:
+branches: [ main ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+test:
+runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run Tests
-        run: mvn clean test
+```
+steps:
+  - name: Checkout Code
+    uses: actions/checkout@v3
+
+  - name: Set up Java
+    uses: actions/setup-java@v3
+    with:
+      distribution: 'temurin'
+      java-version: '17'
+
+  - name: Build Project
+    working-directory: playwright-learn-automation
+    run: mvn clean install -DskipTests
+
+  - name: Install Playwright Browsers
+    working-directory: playwright-learn-automation
+    run: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
+
+  - name: Run Tests
+    working-directory: playwright-learn-automation
+    run: mvn test
+
+  - name: Upload Test Reports
+    uses: actions/upload-artifact@v4
+    with:
+      name: test-results
+      path: |
+        playwright-learn-automation/test-results/
+        playwright-learn-automation/playwright-report/
+```
+
