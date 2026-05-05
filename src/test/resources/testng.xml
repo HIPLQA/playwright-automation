@@ -10,8 +10,13 @@
   </groups>
     <classes>
      
+      
+         <class name="com.playwright.qa.test.NewUserSignUpTest"/>
+      <class name="com.playwright.qa.test.LoginTest"/>
       <class name="com.playwright.qa.test.DashboardPageTest"/>
       <class name="com.playwright.qa.test.LandingPageTest"/>
+      <class name="com.playwright.qa.test.CartPageTest"/>
+      <class name="com.playwright.qa.test.ManageCoursesTest"/>
       
     </classes>
   </test> <!-- Test -->
