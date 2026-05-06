@@ -1,28 +1,42 @@
-name: Run Playwright Tests 
+name: Run Playwright Tests
 
 on:
-  push:
-    branches: [ "main" ]
+push:
+branches: [ "main" ]
+pull_request:
+branches: [ "main" ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+test:
+runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+```
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+  - name: Setup Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: 'temurin'
+      java-version: '17'
 
-      - name: Build project
-        run: mvn clean install -DskipTests
+  - name: Cache Maven dependencies
+    uses: actions/cache@v4
+    with:
+      path: ~/.m2
+      key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
 
-      - name: Install Playwright Browsers
-        run: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
+  - name: Install Playwright Browsers
+    run: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install --with-deps"
 
-      - name: Run Tests
-        run: mvn test -Dheadless=true
+  - name: Run Smoke Tests
+    run: mvn clean test -DsuiteXmlFile=testng-smoke.xml -Dheadless=true
+
+  - name: Upload Test Report
+    if: always()
+    uses: actions/upload-artifact@v4
+    with:
+      name: test-report
+      path: test-output/
+```
