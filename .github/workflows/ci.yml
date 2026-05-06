@@ -21,22 +21,9 @@ steps:
       distribution: 'temurin'
       java-version: '17'
 
-  - name: Cache Maven dependencies
-    uses: actions/cache@v4
-    with:
-      path: ~/.m2
-      key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-
   - name: Install Playwright Browsers
-    run: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install --with-deps"
+    run: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
 
-  - name: Run Smoke Tests
+  - name: Run Tests
     run: mvn clean test -DsuiteXmlFile=testng-smoke.xml -Dheadless=true
-
-  - name: Upload Test Report
-    if: always()
-    uses: actions/upload-artifact@v4
-    with:
-      name: test-report
-      path: test-output/
 ```
