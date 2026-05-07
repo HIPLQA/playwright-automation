@@ -33,52 +33,43 @@ Enterprise-grade UI automation framework built using Playwright + Java + TestNG 
 - TestNG suite management
 
 ---
+## 📁 Project Structure
 
-# 📂 Project Structure
-
-
-playwright-learn-automation
-│
-├── .github
-│   └── workflows
+```
+playwright-learn-automation/
+├── .github/
+│   └── workflows/
 │       └── ci.yml
-│
-├── src
-│   ├── main
-│   │   └── java/com/playwright/qa
-│   │       ├── base
-│   │       │   ├── BaseTest.java
-│   │       │   └── ConfigReader.java
-│   │       │
-│   │       ├── listener
-│   │       │   ├── ExtentListener.java
-│   │       │   ├── ExtentManager.java
-│   │       │   ├── RetryAnalyzer.java
-│   │       │   └── RetryListener.java
-│   │       │
-│   │       ├── pages
-│   │       │   ├── CartPage.java
-│   │       │   ├── DashboardPage.java
-│   │       │   ├── LandingPage.java
-│   │       │   ├── LoginPage.java
-│   │       │   ├── ManageCoursesPage.java
-│   │       │   └── SignUpPage.java
-│   │       │
-│   │       └── utils
-│   │           ├── AssertUtil.java
-│   │           ├── ExcelUtil.java
-│   │           └── TestDataProvider.java
-│   │
-│   └── test
-│       ├── java/com/playwright/qa/test
+├── src/
+│   ├── main/java/com/playwright/qa/
+│   │   ├── base/
+│   │   │   ├── BaseTest.java
+│   │   │   └── ConfigReader.java
+│   │   ├── listener/
+│   │   │   ├── ExtentListener.java
+│   │   │   ├── ExtentManager.java
+│   │   │   ├── RetryAnalyzer.java
+│   │   │   └── RetryListener.java
+│   │   ├── pages/
+│   │   │   ├── CartPage.java
+│   │   │   ├── DashboardPage.java
+│   │   │   ├── LandingPage.java
+│   │   │   ├── LoginPage.java
+│   │   │   ├── ManageCoursesPage.java
+│   │   │   └── SignUpPage.java
+│   │   └── utils/
+│   │       ├── AssertUtil.java
+│   │       ├── ExcelUtil.java
+│   │       └── TestDataProvider.java
+│   └── test/
+│       ├── java/com/playwright/qa/test/
 │       │   ├── CartPageTest.java
 │       │   ├── DashboardPageTest.java
 │       │   ├── LandingPageTest.java
 │       │   ├── LoginTest.java
 │       │   ├── ManageCoursesTest.java
 │       │   └── NewUserSignUpTest.java
-│       │
-│       └── resources
+│       └── resources/
 │           ├── config.properties
 │           ├── testData.xlsx
 │           ├── smoke-suite.xml
@@ -86,9 +77,8 @@ playwright-learn-automation
 │           ├── full-suite.xml
 │           ├── crossbrowser-testing.xml
 │           └── testng.xml
-
-
-
+└── pom.xml
+```
 
 # ⚙️ Setup Instructions
 
