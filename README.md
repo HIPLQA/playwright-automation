@@ -358,4 +358,4 @@ Logs are also appended to Extent Report entries through listeners.
 Pradeep Kumar
 
 GitHub:
-https://github.com/NPrad1
+https://github.com/HIPLQA/playwright-automation
